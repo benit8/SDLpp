@@ -1,0 +1,59 @@
+/*
+** SDL++, 2020
+** Utils.hpp
+*/
+
+#pragma once
+
+////////////////////////////////////////////////////////////////////////////////
+
+#include "Video.hpp"
+
+#include <SDL2/SDL_clipboard.h>
+#include <SDL2/SDL_cpuinfo.h>
+#include <SDL2/SDL_platform.h>
+#include <SDL2/SDL_power.h>
+#include <SDL2/SDL_version.h>
+
+#include <string>
+
+////////////////////////////////////////////////////////////////////////////////
+
+namespace SDL
+{
+
+////////////////////////////////////////////////////////////////////////////////
+
+std::string version();
+std::string platform();
+
+////////////////////////////////////////////////////////////////////////////////
+
+namespace System
+{
+	int CPUCachelineSize();
+	int CPUCount();
+	int RAM();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+namespace Power
+{
+	enum class State
+	{
+		Unknown	  = SDL_POWERSTATE_UNKNOWN,
+		OnBattery = SDL_POWERSTATE_ON_BATTERY,
+		NoBattery = SDL_POWERSTATE_NO_BATTERY,
+		Charging  = SDL_POWERSTATE_CHARGING,
+		Charged	  = SDL_POWERSTATE_CHARGED
+	};
+
+	State state();
+	int batteryRemainingTime();
+	int batteryRemainingCharge();
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+}
